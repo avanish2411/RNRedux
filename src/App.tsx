@@ -1,12 +1,15 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import mystore from './redux/store/mystore'
+import { mystore, persistedStore } from './redux/store/mystore'
 import AppNavigator from './navigation/AppNavigator'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const App = () => {
   return (
     <Provider store={mystore}>
-      <AppNavigator />
+      <PersistGate persistor={persistedStore}>
+        <AppNavigator />
+      </PersistGate>
     </Provider>
   )
 }
